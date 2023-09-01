@@ -1,3 +1,3 @@
 module DeviseDeactivatable
-  VERSION = "0.5.5".freeze
+  VERSION = "0.7.0".freeze
 end

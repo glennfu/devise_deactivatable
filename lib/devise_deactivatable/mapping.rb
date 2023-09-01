@@ -1,13 +1,16 @@
-module DeviceDeactivatable
+# mapping.rb
+module DeviseDeactivatable
   module Mapping
     def self.included(base)
-      base.alias_method_chain :default_controllers, :deactivatable
+      base.prepend(InstanceMethods)
     end
-    
-    private
-    def default_controllers_with_deactivatable(options)
-      options[:controllers] ||= {}
-      default_controllers_without_deactivatable(options)
+
+    module InstanceMethods
+      private
+      def default_controllers(options)
+        options[:controllers] ||= {}
+        super
+      end
     end
   end
 end

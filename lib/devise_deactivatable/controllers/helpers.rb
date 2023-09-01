@@ -1,13 +1,16 @@
-module DeviceDeactivatable
+module DeviseDeactivatable
   module Controllers
     module Helpers
       extend ActiveSupport::Concern
-  
+
       protected
       def authenticate_deactivatee!
-        send(:"authenticate_#{resource_name}!", :force => true)
+        if Devise::VERSION >= '5.0'
+          authenticate_scope!
+        else
+          authenticate_user!
+        end
       end
     end
-  end  
+  end
 end
-
